@@ -6,9 +6,9 @@ NOMBRE: ERNESTO SANIEL CASTRO LOZANO
 """
 
 dic_empresas = {
-    '123':{
-        'razon_social':'UPAO',
-        'dirección' : 'Av. San Martín 1110'
+    '20141878477':{
+        'razon_social':'UNIVERSIDAD PRIVADA ANTENOR ORREGO',
+        'dirección' : 'Av. América Sur 3145'
     }
 }
 
@@ -34,14 +34,23 @@ while(True):
         print("=" * ANCHO)
         
         ruc = input("Ingrese RUC: ")
-        razon_social = input("Ingrese Razón Social: ")
-        direccion = input("Ingrese Dirección: ")
-        dic_nueva_empresa = {
-            'razon_social': razon_social,
-            'dirección': direccion
-        }
-        dic_empresas[ruc] = dic_nueva_empresa
-        print("Empresa registrada existosamente")
+        
+        # Validar RUC
+        if not ruc.isdigit():
+            print("ERROR: El RUC debe contener solo números")
+        elif len(ruc) != 11:
+            print("ERROR: El RUC debe tener exactamente 11 dígitos")
+        elif ruc in dic_empresas:
+            print("ERROR: El RUC ya está registrado")
+        else:
+            razon_social = input("Ingrese Razón Social: ")
+            direccion = input("Ingrese Dirección: ")
+            dic_nueva_empresa = {
+                'razon_social': razon_social,
+                'dirección': direccion
+            }
+            dic_empresas[ruc] = dic_nueva_empresa
+            print("Empresa registrada existosamente")
     elif opcion == 2:
         print("=" * ANCHO)
         print(" " * 10 + "MOSTRAR EMPRESA")
